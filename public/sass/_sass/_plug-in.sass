@@ -1,0 +1,39 @@
+html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6
+-webkit-text-size-adjust:100%
+/* 动画定义3D启用硬件加速 */
+
+
+html
+  -webkit-transform:translate3d(0, 0, 0)
+  transform:translate3d(0, 0, 0)
+/* 设置内嵌的元素在 3D 空间如何呈现：保留3D */
+  -webkit-transform-style:preserve-3d
+/* 设置进行转换的元素的背面在面对用户时是否可见：隐藏 */
+  -webkit-backface-visibility:hidden
+/* 某些Android手机圆角失效 */
+  background-clip:padding-box
+
+
+/* 通过transform进行skew变形，rotate旋转会造成出现锯齿现象 */
+html
+  -webkit-transform: rotate(-4deg) skew(10deg) translateZ(0)
+  transform: rotate(-4deg) skew(10deg) translateZ(0)
+  outline: 1px solid rgba(255, 255, 255, 0)
+
+
+/* 部分机型存在type为search的input，自带close按钮样式修改方法 */
+#Search::-webkit-search-cancel-button
+  display: none
+
+/* webkit表单输入框placeholder的颜色值 */
+input::-webkit-input-placeholder
+  color:#999
+input:focus::-webkit-input-placeholder
+  color:#999
+
+/* android下取消输入语音按钮 */
+input::-webkit-input-speech-button
+  display: none
+/* 在部分android 机型中的输入框可能会出现如图怪异的多余的浮出表单 */
+input[type="password"]
+  -webkit-text-security: disc

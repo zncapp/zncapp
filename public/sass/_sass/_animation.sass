@@ -1,0 +1,47 @@
+@import './_mixin.sass'
+
+.flip-over-ani
+  @include _animation(flipOverAni 0.3s linear 0s infinite alternate)
+.music-ani
+  @include _animation(musicAni 1.5s linear 0s infinite)
+.shake
+  @include _animation(shakeAni 1s linear 0s infinite alternate)
+.shake2
+  @include _animation(shakeAni 1s linear 0.75s infinite alternate)
+.ball
+  transform-origin: 52% 57%
+  @include _animation(ballAni 3.5s linear 1s infinite)
+.ball-light
+  @include _animation(ballLightAni 0.5s linear 1s infinite alternate)
+
+  
+
+@keyframes flipOverAni
+  from
+    bottom: 55px
+  to
+    bottom: 65px
+
+@keyframes musicAni
+  from
+    transform: rotateZ(0deg)
+  to
+    transform: rotateZ(360deg)
+
+@keyframes shakeAni
+  from
+    opacity: 1
+  to
+    opacity: 0.3
+
+@keyframes ballAni
+  from
+    transform: rotateZ(0deg)
+  to
+    transform: rotateZ(360deg)
+
+@keyframes ballLightAni
+  from
+    transform: rotateX(0deg) scale(1)
+  to
+    transform: rotateX(5deg) scale(0.9)

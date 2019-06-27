@@ -1,0 +1,186 @@
+@mixin nowrap
+  // 不换行
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+
+@mixin IamTheCenter
+  // 上下左右居中
+  position: absolute
+  top: 50%
+  left: 50%
+  -moz-transform: translate(-50%, -50%)
+  -webkit-transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%)
+
+@mixin IamTheMiddle
+  // 左右居中
+  position: absolute
+  left: 50%
+  -moz-transform: translate(-50%, 0)
+  -webkit-transform: translate(-50%, 0)
+  transform: translate(-50%, 0)
+
+@mixin IamTheTable
+  // 上下居中
+  position: absolute
+  top: 50%
+  -moz-transform: translate(0, -50%)
+  -webkit-transform: translate(0, -50%)
+  transform: translate(0, -50%)
+
+@mixin IamFlexCenter
+  // flex 方法的上下左右居中
+  display: flex
+  display: -ms-flexbox
+  display: -webkit-box
+  align-items: center
+  -ms-flex-align: center
+  -webkit-box-align: center
+
+@mixin IamBoxCenter
+  display: -webkit-box
+  -webkit-box-pack: center
+  -webkit-box-align: center
+
+@mixin _flex($flex: space-between)
+  display: flex
+  justify-content: $flex
+  align-items: center
+
+@mixin _wh($width, $height: $width, $line: 1.5)
+  width: $width
+  @if $height == auto
+    height: $height
+    line-height: $line
+  @else if $line != 1.5
+    height: $height
+    line-height: $line
+  @else
+    height: $height
+    line-height: $height
+
+@mixin _fs($size, $color: inherit)
+  font-size: $size
+  color: $color
+
+@mixin _position( $top, $left, $absolute: absolute)
+  position: $absolute
+  top: $top
+  left: $left
+
+@mixin _background( $url, $repeat: no-repeat, $position: center, $size: contain, $color: transparent)
+  background:
+    image: url($url)
+    color: $color
+    repeat: $repeat
+    position: $position
+    size: $size
+
+@mixin _border( $width, $style, $color, $radius: 0)
+  border:
+    width: $width
+    style: $style
+    color: $color
+    radius: $radius
+
+@mixin _fontAdjust($font)
+  letter-spacing: $font
+  text-indent: $font
+
+@mixin _overClamp($num)
+  // 多行溢出省略
+  display: box
+  display: -webkit-box
+  text-overflow: ellipsis
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: $num
+  overflow: hidden
+
+@mixin _noTouch
+  // 禁止反键保存图片
+  pointer-events: none
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+@mixin _noTextUse
+  // 是否支持用户选择复制使用文本
+  -webkit-user-select: none
+  -moz-user-select: none
+  -khtml-user-select: none
+  user-select: none
+
+// 是否支持某个浏览器的前缀，如果你不想支持，可以设置为false
+$prefix-for-webkit: true !default
+$prefix-for-mozilla: true !default
+$prefix-for-microsoft: false !default
+$prefix-for-opera: false !default
+$prefix-for-spec: false !default
+
+// prefixer 方法
+@mixin prefixer ($property, $value, $prefixes)
+  @each $prefix in $prefixes
+    @if $prefix == webkit and $prefix-for-webkit == true
+      -webkit-#{$property}: $value
+
+    @else if $prefix == moz and $prefix-for-mozilla == true
+      -moz-#{$property}: $value
+
+    @else if $prefix == ms and $prefix-for-microsoft == true
+      -ms-#{$property}: $value
+
+    @else if $prefix == o and $prefix-for-opera == true
+      -o-#{$property}: $value
+
+    @else if $prefix == spec and $prefix-for-spec == true
+      #{$property}: $value
+
+    @else
+      @warn " Unrecognized prefix: #{$prefix} "
+
+// transform 方法
+@mixin _web_transform($property...)
+  @include prefixer(transform, $property, webkit spec)
+
+@mixin _transform($property...)
+  @include prefixer(transform, $property, webkit moz spec)
+
+@mixin _animation($property...)
+  @include prefixer(animation, $property, webkit moz spec)
+
+@mixin _animations($name,$duration: 1s,$timingFn: ease,$delay: 0,$count: 1,$direction: normal)
+  animation
+    name: $name
+    // 规定动画完成一个周期所花费的秒或毫秒。默认是 0。
+    duration: $duration
+    // 规定动画的速度曲线。默认是 "ease"。
+    timing-function: $timingFn
+    // **  linear 动画从头到尾的速度是相同的。
+    // **  ease 默认。动画以低速开始，然后加快，在结束前变慢。
+    // **  ease-in 动画以低速开始。
+    // **  ease-out 动画以低速结束。
+    // **  ease-in-out 动画以低速开始和结束。
+    // **  cubic-bezier(n,n,n,n)
+    // 规定动画何时开始。默认是 0。
+    delay: $delay
+    // 规定动画被播放的次数。默认是 1。
+    iteration-count: $count
+    // **  n 定义动画播放次数的数值。
+    // **  infinite 规定动画应该无限次播放。
+    // 规定动画是否在下一周期逆向地播放。默认是 "normal"。
+    direction: $direction
+    // **  normal 默认值。动画应该正常播放。
+    // **  alternate 动画应该轮流反向播放
+    // --- play-state  
+    // ** 规定动画是否正在运行或暂停。默认是 "running"。
+    // ** paused 规定动画已暂停。
+    // ** running 规定动画正在播放。
+    // --- fill-mode
+    // ** 规定对象动画时间之外的状态。
+    // ** none 不改变默认行为。
+    // ** forwards 当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。
+    // ** backwards 在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。
+    // ** both 向前和向后填充模式都被应用。
