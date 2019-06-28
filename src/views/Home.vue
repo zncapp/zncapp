@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <HelloWorld msg="实时滚动的短料"/>
+    <ShortDisclose msg="实时滚动的短料"/>
   </div>
 </template>
 
@@ -13,12 +13,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue';
+import ShortDisclose from '@/components/ShortDisclose.vue';
 
 export default Vue.extend({
   name: 'home',
   components: {
-    HelloWorld,
+    ShortDisclose,
   },
 });
 </script>

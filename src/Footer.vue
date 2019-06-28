@@ -32,7 +32,6 @@ export default Vue.extend({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
 @import "./../public/sass/_sass/_mixin.sass"
-$num: 1
 footer
   @include _wh(100vw,55px)
   @include _flex()
