@@ -20,8 +20,9 @@ html,body,#app
   @include _flex(flex-start)
   flex-direction: column
 #center
-  flex: 1
   width: 100vw
+  height: calc(100vh - 30px - 55px)
+  overflow: hidden
 </style>
 
 <script lang="ts">

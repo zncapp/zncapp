@@ -28,13 +28,16 @@
           </label>
         </div>
         <div class="people">
-          <label>{{item.name}}</label>
-          <label>{{item.sex === 1 ? '男' : '女'}}</label>
-          <label>{{item.age}}</label>
-          <label>{{item.place}}</label>
-          <label>{{item.education}}</label>
+          <p>{{item.name}}、{{item.age}}岁</p>
+          <p>学历：{{item.education}}</p>
+          <p>活动范围：{{item.place}}</p>
         </div>
-        {{item.describe}}
+        <div class="people-sex">
+          <svg class="icon" aria-hidden="true"><use :xlink:href="`#icon-${item.sex === 1 ? 'nanshen' : 'nvren'}`"></use></svg>
+        </div>
+        <div class="describe">
+          {{item.describe}}
+        </div>
       </li>
     </ul>
   </div>
@@ -52,9 +55,10 @@ export default Vue.extend({
     return{
       msgArr: [
         {
+          userId: 1,
           label: [
-            {type: 10, hot: 10}, // 无解，纯黑，不解释，最高犯罪
-            {type: 9, hot: 10},
+            {type: 10, hot: 6},
+            {type: 9, hot: 2}
           ],
           name: '陈某熙',
           sex: 1,
@@ -62,7 +66,46 @@ export default Vue.extend({
           place: '北京三里屯',
           education: '北京外国语学院',
           describe: '身高178cm左右，右手腕有痣，喜欢打王者荣耀，养有一只加菲。'
-        }
+        },
+        {
+          userId: 2,
+          label: [
+            {type: 14, hot: 7},
+            {type: 18, hot: 10}
+          ],
+          name: '江某乐',
+          sex: 0,
+          age: 18,
+          place: '北京三里屯',
+          education: '北京外国语学院',
+          describe: '玩弄感情，双性恋者。诈骗钱财，已有多人上当受害。'
+        },
+        {
+          userId: 3,
+          label: [
+            {type: 10, hot: 6},
+            {type: 9, hot: 2}
+          ],
+          name: '陈某熙',
+          sex: 1,
+          age: 24,
+          place: '北京三里屯',
+          education: '北京外国语学院',
+          describe: '身高178cm左右，右手腕有痣，喜欢打王者荣耀，养有一只加菲。'
+        },
+        {
+          userId: 4,
+          label: [
+            {type: 10, hot: 6},
+            {type: 9, hot: 2}
+          ],
+          name: '陈某熙',
+          sex: 1,
+          age: 24,
+          place: '北京三里屯',
+          education: '北京外国语学院',
+          describe: '身高178cm左右，右手腕有痣，喜欢打王者荣耀，养有一只加菲。'
+        },
       ]
     }
   }
@@ -74,21 +117,42 @@ export default Vue.extend({
 @import "./../../public/sass/_sass/_mixin.sass"
 #shortDisclose
   @include _wh(100%,auto)
-  .tips
-    @include _flex(flex-start)
-    flex-wrap: wrap
-    label
-      width: 20%
-      display: flex
-      margin-bottom: 3px
-      text-align: center
-      span
-        width: 80%
+  li
+    background: #fff
+    border-radius: 10px
+    padding: 10px
+    margin-bottom: 10px
+    position: relative
+    .tips
+      @include _flex(flex-start)
+      flex-wrap: wrap
+      label
+        width: 20%
+        display: flex
+        margin-bottom: 3px
+        text-align: center
+        span
+          width: 80%
+          line-height: 1.5
+          margin: 0 auto
+          border-radius: 3px
+    .people
+      p
+        font-size: 12px
+        white-space: nowrap
         line-height: 1.5
-        margin: 0 auto
-        border-radius: 3px
-  .people
-    label
-      font-size: 12px
-      white-space: nowrap
+        color: #5f5f5f
+    .people-sex
+      @include _wh(30px)
+      font-size: 17px
+      text-align: center
+      @include _position(0,auto)
+      @include _border(2px,solid,#000,0 10px 0 10px)
+      background: #efefef
+      right: 0
+    .describe
+      margin-top: 5px
+      padding-top: 7px
+      color: #5d5d5d
+      border-top: 1px dotted #000
 </style>
