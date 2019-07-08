@@ -1,6 +1,6 @@
 <template>
   <footer id="footer">
-    <router-link v-for="(item, index) in navArr" :key="index" :to="item.to" :class="navIndex === index ? `active` : '' ">
+    <router-link v-for="(item, index) in navArr" :key="index" :to="item.to">
       <svg class="icon" aria-hidden="true">
         <use :xlink:href="`#icon-${item.icon}`"></use>
       </svg>
@@ -23,15 +23,13 @@ export default Vue.extend({
         { to: '/cooperation', icon: 'qianyueshangpu', txt: '互助圈'}
       ]
     }
-  },
-  methods: {
   }
 });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
-@import "./../public/sass/_sass/_mixin.sass"
+@import "./../../public/sass/_sass/_mixin.sass"
 footer
   @include _wh(100vw,55px)
   @include _flex()
@@ -47,7 +45,7 @@ footer
     color: #5b5b5b
     svg
       font-size: 3vh
-  a.active
+  a.router-link-active.router-link-exact-active
     color: #fff
     background: linear-gradient(0deg, #9795f0 0%, #fbc8d4 80%)
 </style>

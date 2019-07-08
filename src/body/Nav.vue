@@ -15,7 +15,7 @@ export default Vue.extend({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
-@import "./../public/sass/_sass/_mixin.sass"
+@import "./../../public/sass/_sass/_mixin.sass"
 nav
   @include _wh(100vw,30px)
   @include _flex()

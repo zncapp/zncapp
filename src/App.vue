@@ -27,8 +27,8 @@ html,body,#app
 
 <script lang="ts">
 import Vue from 'vue';
-import Nav from './Nav.vue';
-import Footer from './Footer.vue';
+import Nav from './body/Nav.vue';
+import Footer from './body/Footer.vue';
 
 export default Vue.extend({
   name: 'app',
